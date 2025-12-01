@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt.android)
+    kotlin("kapt")
 }
 
 android {
@@ -80,4 +82,7 @@ dependencies {
     implementation(libs.glide)
     // Robolectric
     testImplementation(libs.robolectric)
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 }
