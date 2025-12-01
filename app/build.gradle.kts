@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt.android)
-    kotlin("kapt")
 }
 
 android {
@@ -47,6 +46,9 @@ android {
             excludes += "META-INF/**"
             excludes += "win32-x86*/**"
         }
+    }
+    hilt {
+        enableAggregatingTask = false
     }
 }
 
