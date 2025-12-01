@@ -3,37 +3,28 @@ package woowacourse.shopping.ui.cart
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import woowacourse.bibi.di.androidx.injectedViewModel
-import woowacourse.bibi.di.core.ActivityScope
-import woowacourse.bibi.di.core.Inject
-import woowacourse.bibi.di.core.MemberInjector
+import dagger.hilt.android.AndroidEntryPoint
 import woowacourse.shopping.R
-import woowacourse.shopping.ShoppingApplication
 import woowacourse.shopping.databinding.ActivityCartBinding
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class CartActivity :
     AppCompatActivity(),
     CartProductClickListener {
     private val binding by lazy { ActivityCartBinding.inflate(layoutInflater) }
 
-    private val activityContainer by lazy {
-        (application as ShoppingApplication).container.child(ActivityScope::class)
-    }
-
-    private val viewModel by lazy {
-        injectedViewModel<CartViewModel> { activityContainer }
-    }
+    private val viewModel: CartViewModel by viewModels()
 
     @Inject
-    private lateinit var dateFormatter: DateFormatter
+    lateinit var dateFormatter: DateFormatter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        MemberInjector.inject(this, activityContainer)
 
         setupContentView()
         setupBinding()
@@ -102,6 +93,5 @@ class CartActivity :
 
     override fun onDestroy() {
         super.onDestroy()
-        if (!isChangingConfigurations) activityContainer.clear()
     }
 }
