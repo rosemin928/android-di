@@ -80,3 +80,7 @@
 ### 선택 요구 사항
 - [ ] `DateFormatter`가 Configuration Changes에도 살아남을 수 있도록 구현한다.
 - [ ] Activity, ViewModel 외에도 다양한 컴포넌트 별 유지될 의존성을 관리한다.
+
+## 5단계
+## 🛠️ 기능 요구 사항
+- [ ] Hilt를 적용해본다.
